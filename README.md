@@ -20,16 +20,15 @@ You can download and execute the `.msi` file [here](https://static.rust-lang.org
 To test the installation you can create an hello world executable with cargo and run it.
 
 ```
+mkdir test-install
+cd test-install
 cargo init --bin
 cargo run
 ```
 
-If there is no error message and you see `Hello, world!`, then you are all set !
-
-### IDE
-Rust has the RLS (Rust Language Server) that allows IDE functionalities into almost every editors. You can download the corresponding Rust plugin for your favorite editor and install the Rust Language Server by executing the following lines.
+If there is no error and you can see `Hello, world!`, then you are all set and can delete the test project.
 
 ```
-rustup update
-rustup component add rls-preview rust-analysis rust-src
+cd ..
+rm -rf test-install
 ```
