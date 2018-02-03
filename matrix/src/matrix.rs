@@ -39,50 +39,46 @@ pub fn from_vec(vec: Vec<Vec<f64>>) -> Matrix {
     }
 }
 
-mod api {
-    use super::*;
+impl Matrix {
+    pub fn set(&mut self, i: usize, j: usize, value: f64) {
+        self.table[i][j] = value;
+    }
 
-    impl Matrix {
-        pub fn set(&mut self, i: usize, j: usize, value: f64) {
-            self.table[i][j] = value;
+    pub fn get(&self, i: usize, j: usize) -> f64 {
+        self.table[i][j]
+    }
+
+    pub fn mul_with_index(&self, other: &Matrix) -> Matrix {
+        if self.size.1 != other.size.0 {
+            panic!(
+                "Matrix have wrong dimensions ({},{}), not compatible with ({},{})",
+                self.size.0, self.size.1, other.size.0, other.size.1
+            );
         }
 
-        pub fn get(&self, i: usize, j: usize) -> f64 {
-            self.table[i][j]
-        }
+        let mut new_matrix = new(self.size.0, self.size.1, 0.0);
 
-        pub fn mul_with_index(&self, other: &Matrix) -> Matrix {
-            if self.size.1 != other.size.0 {
-                panic!(
-                    "Matrix have wrong dimensions ({},{}), not compatible with ({},{})",
-                    self.size.0, self.size.1, other.size.0, other.size.1
-                );
-            }
-
-            let mut new_matrix = new(self.size.0, self.size.1, 0.0);
-
-            for i in 0..self.size.0 {
-                for j in 0..other.size.1 {
-                    for k in 0..other.size.0 {
-                        new_matrix.table[i][j] += self.table[i][k] + other.table[k][j];
-                    }
+        for i in 0..self.size.0 {
+            for j in 0..other.size.1 {
+                for k in 0..other.size.0 {
+                    new_matrix.table[i][j] += self.table[i][k] + other.table[k][j];
                 }
             }
-
-            return new_matrix;
         }
 
-        pub fn mul_without_index(&self, other: &Matrix) -> Matrix {
-            if self.size.1 != other.size.0 {
-                panic!(
-                    "Matrix have wrong dimensions ({},{}), not compatible with ({},{})",
-                    self.size.0, self.size.1, other.size.0, other.size.1
-                );
-            }
+        return new_matrix;
+    }
 
-            let new_matrix = new(self.size.0, self.size.1, 0.0);
-            return new_matrix;
+    pub fn mul_without_index(&self, other: &Matrix) -> Matrix {
+        if self.size.1 != other.size.0 {
+            panic!(
+                "Matrix have wrong dimensions ({},{}), not compatible with ({},{})",
+                self.size.0, self.size.1, other.size.0, other.size.1
+            );
         }
+
+        let new_matrix = new(self.size.0, self.size.1, 0.0);
+        return new_matrix;
     }
 }
 
