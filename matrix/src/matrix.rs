@@ -63,7 +63,7 @@ mod tests {
     use matrix;
 
     #[test]
-    fn test_add_without_index() {
+    fn test_add() {
         let table = vec![
             (matrix![[2.0], [1.5]], 2.5, matrix![[4.5], [4.0]]),
             (
