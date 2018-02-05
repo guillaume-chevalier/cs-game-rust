@@ -1,6 +1,9 @@
 mod singer;
 
 fn main() {
-    let singer = singer::new(false);
-    println!("{}", singer.sing());
+    let good_singer = singer::new(true);
+    let bad_singer = singer::new(false);
+
+    println!("{}", good_singer.sing());
+    println!("{}", bad_singer.sing());
 }
