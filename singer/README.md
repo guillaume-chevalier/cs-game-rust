@@ -8,4 +8,4 @@ To run the code just execute `cargo run`.
 
 ### Hint
 
-You should have a directory `singer` with on `trait` and two `structs`.
+You should have a directory `singer` with one `trait` and two `structs`.
