@@ -39,6 +39,15 @@ pub fn from_vec(vec: Vec<Vec<f64>>) -> Matrix {
     }
 }
 
+impl Matrix{
+    pub fn add(&mut self, value_to_add: f64){
+        for i in 0..self.size.0 {
+            for j in 0..self.size.1 {
+                self.table[i][j] = self.table[i][j] + value_to_add;
+            }
+        }
+    }
+}
 impl Display for Matrix {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut output = String::new();
